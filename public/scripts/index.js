@@ -1,4 +1,4 @@
-const navBar = document.querySelector(".navbar").children
+const navBar = document.querySelector(".navbar-top").children
 const addButton = document.querySelector(".header-bar-add")
 const addMenu = document.querySelector(".header-bar-add-menu")
 const addMenuConfirmButton = document.querySelector(".add-menu-confirm > button")

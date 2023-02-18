@@ -21,9 +21,8 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
-app.get('/settings', (req, res) => {
-    res.render('settings')
-})
-
+/*-------------- ROUTES --------------*/
+const settingsRouter = require('./routes/settings')
+app.use('/settings', settingsRouter)
 
 app.listen(process.env.PORT || 3000)
