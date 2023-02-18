@@ -49,7 +49,7 @@ function createCourse(name, color) {
     const menuButton =courseColor.appendChild(document.createElement('input'))
     menuButton.setAttribute('type', 'image')
     menuButton.className = 'course-menu'
-    menuButton.setAttribute('src', 'svg/3-vertical-dots-icon.svg')
+    menuButton.setAttribute('src', 'svg/navbar/3-vertical-dots-icon.svg')
     menuButton.addEventListener('click', deleteCourse)
     courseMenus.push(menuButton)
 
