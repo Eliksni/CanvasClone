@@ -5,10 +5,12 @@ if(process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const User = require('./models/user')
 
 app.set('view engine', 'ejs')
 app.set('views', './views')
 app.use(express.static(__dirname + '/public'))
+app.use(express.urlencoded({extended: false}))
 
 mongoose.set('strictQuery', true)
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true })
@@ -24,5 +26,11 @@ app.get('/', (req, res) => {
 /*-------------- ROUTES --------------*/
 const settingsRouter = require('./routes/settings')
 app.use('/settings', settingsRouter)
+
+const loginRouter = require('./routes/login')
+app.use('/login', loginRouter)
+
+const registerRouter = require('./routes/register')
+app.use('/register', registerRouter)
 
 app.listen(process.env.PORT || 3000)
