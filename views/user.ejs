@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+    <body>
+        <div class="body">
+            <div class="navbar">
+                <div class="navbar-top">
+                    <input type="image" class="icon" onclick="location.href='/';" src="svg/navbar/home.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="svg/navbar/search.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="svg/navbar/envelope.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="svg/navbar/users-alt.svg">
+                    <input type="image" class="icon" onclick="location.href='settings';" src="svg/navbar/settings.svg">
+                </div>     
+                    <input type="image" class="icon user" onclick="location.href='user';" src="svg/navbar/user.svg">
+            </div>
+            <div class="mainpage">
+                <div class="courses-header">
+                    <div>
+                        Welcome to your User Page 
+                        <% if(session.user) {%> 
+                            <%= ` ${session.user.username}` %>
+                            <% } %>
+                        <hr class="header-bar">
+                    </div>
+                    
+                </div>
+                
+                <div class="user-profile">
+                    <div class="user-profile-picture">
+                        PFP
+                    </div>
+                    <div>
+                        <h1>About Me</h1><br>
+                        hi
+                        <h1>Links</h1><br>
+                        links
+                        <h1>Contact Info</h1><br>
+                        contact info
+                    </div>
+                    <div>
+                        <button class="user-profile-button">Edit Profile</button> <br>
+                        <form action="/logout" method="POST">
+                            <button class="user-profile-button" name="logout" type="submit">Logout</button>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -235,9 +235,9 @@ body {
     border: 1px solid rgba(0,0,0,0.5);
     border-radius: 5px;
     position: absolute;
-    top: calc(50% - 25%); /* height/2 */
-    height: 50%;
-    width: 20%;
+    top: calc(50vh - 25vh); /* height/2 */
+    height: 50vh;
+    width: 20vw;
     background-color: #DFDFDF;
     
 }
@@ -245,9 +245,10 @@ body {
 .login-container {
     display: grid;
     box-sizing: border-box;
+    height: 100%;
+    width: 100%;
     padding: 10%;
     grid-template-rows: repeat(5, 1fr);
-    height: 100%;
     font-size: 1.25rem;
 }
 
@@ -262,5 +263,28 @@ body {
 .login-links {
     display:flex;
     justify-content: space-between;
+}
+
+.login-header {
+    letter-spacing: 0.1rem; 
+    font-size: 2rem;
+    text-align: center;
+}
+
+.user-profile {
+    display:grid;
+    grid-template-columns: 200px 800px 200px;
+    grid-auto-rows: 300px;
+    margin-top: 5%;
+}
+
+.user-profile-picture {
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile-button {
+    width: 50%;
+    margin-top: 10%;
 }
 

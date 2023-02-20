@@ -11,8 +11,10 @@ router.post('/', async (req, res) => {
     let user = new User()
     try{
         user = await User.findOne({username: req.body.username})
-        if(await bcrypt.compare(req.body.password, user.passwordHash))
-            console.log("success")
+        if(await bcrypt.compare(req.body.password, user.passwordHash)){
+            req.session.user = user
+            res.redirect('/')
+        }
         else
             console.log("failure")
     } catch(e) {
