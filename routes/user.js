@@ -6,6 +6,7 @@ const User = require('./../models/user')
 
 router.get('/', util.isAuthenticated, async (req, res) => {
     let user = req.session.user
+    // Initialize user page if nonexistant
     if(!user.userPage) {
         user.userPage = {
             bio: "",
@@ -33,7 +34,6 @@ router.get('/edit', util.isAuthenticated, (req, res) => {
 
 router.post('/save', util.isAuthenticated, async (req, res) => {
     try {
-        //let user = await User.findOne({username: req.session.user.username})
         let user = req.session.user
         console.log(user)
         user.userPage = {
