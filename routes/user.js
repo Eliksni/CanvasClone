@@ -1,7 +1,21 @@
 const express = require('express')
 const router = express.Router()
+const multer = require('multer')
+const uuid = require('uuid').v4
 const util = require('./../utility')
 const User = require('./../models/user')
+
+
+const avatars = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'public/uploads/')
+    },
+    filename: (req, file, cb) => {
+        const originalName = file.originalname;
+        cb(null, `${uuid()}-${originalName}`);
+    }
+})
+const avatarUpload = multer({storage: avatars})
 
 
 router.get('/', util.isAuthenticated, async (req, res) => {
@@ -11,9 +25,8 @@ router.get('/', util.isAuthenticated, async (req, res) => {
         user.userPage = {
             bio: "",
             links: "",
-            profilePicturePath: ""
+            profilePicturePath: "/img/default.jpg"
         }
-        console.log(user)
         try {
             await User.updateOne({username: user.username}, {$set:{userPage: user.userPage}})
         } catch(e) {
@@ -32,13 +45,13 @@ router.get('/edit', util.isAuthenticated, (req, res) => {
     res.render('user/edit', {session: req.session})
 })
 
-router.post('/save', util.isAuthenticated, async (req, res) => {
+router.post('/save', util.isAuthenticated, avatarUpload.single('avatar'), async (req, res) => {
     try {
         let user = req.session.user
-        console.log(user)
         user.userPage = {
             bio: req.body.bio,
-            links: req.body.links
+            links: req.body.links,
+            profilePicturePath: `/uploads/${req.file?.filename}`
         }
         await User.updateOne({username: user.username}, {$set:{ userPage: user.userPage}})
         res.redirect('/user')

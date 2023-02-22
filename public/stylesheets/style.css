@@ -274,13 +274,24 @@ body {
 .user-profile {
     display:grid;
     grid-template-columns: 200px 800px 200px;
-    grid-auto-rows: 300px;
+    grid-auto-rows: 400px;
     margin-top: 5%;
 }
 
 .user-profile-picture {
     display: flex;
     justify-content: center;
+}
+
+.profile-image {
+    max-width:60%;
+    max-height:30%;
+    border-radius: 50%;
+}
+
+.profile-image-upload {
+    max-width:60%;
+    max-height:30%;
 }
 
 .user-profile-button {
