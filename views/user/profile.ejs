@@ -37,9 +37,9 @@
                     </div>
                     <div>
                         <h1>About Me</h1><br>
-                        <%=`${session.user.userPage.bio}`%>
+                        <%- `${session.user.userPage.bio}`.replace(/\n/g, "<br>") %>
                         <h1>Links</h1><br>
-                        <%=`${session.user.userPage.links}`%>
+                        <%- `${session.user.userPage.links}`.replace(/\n/g, "<br>") %>
                     </div>
                     <div>
                         <button class="user-profile-button" onclick="location.href='user/edit';">Edit Profile</button> <br>

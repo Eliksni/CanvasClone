@@ -4,7 +4,22 @@ const util = require('./../utility')
 const User = require('./../models/user')
 
 
-router.get('/', util.isAuthenticated, (req, res) => {
+router.get('/', util.isAuthenticated, async (req, res) => {
+    let user = req.session.user
+    if(!user.userPage) {
+        user.userPage = {
+            bio: "",
+            links: "",
+            profilePicturePath: ""
+        }
+        console.log(user)
+        try {
+            await User.updateOne({username: user.username}, {$set:{userPage: user.userPage}})
+        } catch(e) {
+            console.log(e)
+        }
+        
+    }
     res.render('user/profile', {session: req.session})
 })
 
@@ -13,28 +28,22 @@ router.get('/', (req, res) => {
 })
 
 router.get('/edit', util.isAuthenticated, (req, res) => {
-    try {
-        const user = req.session.user
-        console.log(user)
-    } catch(e) {
-        console.log(e.message)
-    }
     res.render('user/edit', {session: req.session})
 })
 
 router.post('/save', util.isAuthenticated, async (req, res) => {
     try {
-        let user = await User.findOne({username: req.session.user.username})
+        //let user = await User.findOne({username: req.session.user.username})
+        let user = req.session.user
         console.log(user)
         user.userPage = {
             bio: req.body.bio,
             links: req.body.links
         }
-        console.log(user)
-        await user.save()
-        res.redirect('./')
+        await User.updateOne({username: user.username}, {$set:{ userPage: user.userPage}})
+        res.redirect('/user')
     } catch(e) {
-        console.log(e.message)
+        console.log(e)
     }
 })
 

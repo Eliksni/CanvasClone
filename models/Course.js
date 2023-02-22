@@ -27,10 +27,6 @@ const courseSchema = new mongoose.Schema ({
             }
         }]
     }
-
-
-
-
 })
 
 
