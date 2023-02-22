@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+    <body>
+        <div class="body">
+            <div class="navbar">
+                <div class="navbar-top">
+                    <input type="image" class="icon" onclick="location.href='/';" src="../svg/navbar/home.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="../svg/navbar/search.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="../svg/navbar/envelope.svg">
+                    <input type="image" class="icon" onclick="location.href='/';" src="../svg/navbar/users-alt.svg">
+                    <input type="image" class="icon" onclick="location.href='/settings';" src="../svg/navbar/settings.svg">
+                </div>     
+                    <input type="image" class="icon user" onclick="location.href='/';" src="../svg/navbar/user.svg">
+            </div>
+            <div class="mainpage">
+                <div class="courses-header">
+                    <div>
+                        Edit your page,  
+                        <% if(session.user) {%> 
+                            <%= ` ${session.user.username}` %>
+                            <% } %>
+                        <hr class="header-bar">
+                    </div>
+                    
+                </div>
+                <form action="./save" method="POST">
+                    <div class="user-profile">
+                        <div class="user-profile-picture">
+                            PFP
+                        </div>
+                        <div>
+                            <h1>About Me</h1><br>
+                            <textarea id="bio" name="bio" rows="10" cols="100"><%=session.user.userPage.bio%></textarea>
+                            <h1>Links</h1><br>
+                            <textarea id="links" name="links" rows="10" cols="100"><%=session.user.userPage.links%></textarea>
+                        </div>
+                        <div>
+                            <button class="user-profile-button" name="save" type="submit">Save Changes</button>      
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

@@ -6,6 +6,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const User = require('./models/user')
+const Course = require('./models/course')
 const session = require('express-session')
 
 app.set('view engine', 'ejs')
@@ -49,3 +50,25 @@ const userRouter = require('./routes/user')
 app.use('/user', userRouter)
 
 app.listen(process.env.PORT || 3000)
+
+
+
+// const course = new Course()
+// course.courseName = 'Computer Vision'
+// course.courseId = 'COSC 445'
+// course.sections = {sectionNum: '001', courseSize: 40, term: '2022W'}
+// course.save()
+
+// async function run() {
+//     try{
+//         const user = await User.findOne({username: 'elvis46'})
+//         //user.courses = []
+//         const course = await Course.findOne({courseName: 'Computer Vision'})
+//         console.log(course._id)
+//         user.courses.push(course._id)
+//         user.save()
+//     } catch(e){
+//         console.log(e.message)
+//     }
+// }
+// run()

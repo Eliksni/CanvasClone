@@ -22,7 +22,7 @@
             <div class="mainpage">
                 <div class="courses-header">
                     <div>
-                        Welcome to your User Page 
+                        Welcome to your User Page, 
                         <% if(session.user) {%> 
                             <%= ` ${session.user.username}` %>
                             <% } %>
@@ -37,14 +37,12 @@
                     </div>
                     <div>
                         <h1>About Me</h1><br>
-                        hi
+                        <%=`${session.user.userPage.bio}`%>
                         <h1>Links</h1><br>
-                        links
-                        <h1>Contact Info</h1><br>
-                        contact info
+                        <%=`${session.user.userPage.links}`%>
                     </div>
                     <div>
-                        <button class="user-profile-button">Edit Profile</button> <br>
+                        <button class="user-profile-button" onclick="location.href='user/edit';">Edit Profile</button> <br>
                         <form action="/logout" method="POST">
                             <button class="user-profile-button" name="logout" type="submit">Logout</button>
                         </form>

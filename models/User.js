@@ -21,16 +21,32 @@ const userSchema = new mongoose.Schema ({
         required: true
     },
     courses: {
-        type: [mongoose.SchemaTypes.ObjectId]
+        type: [{
+            course: {
+                type: [mongoose.SchemaTypes.ObjectId]
+            },
+            color: {
+                type: String
+            },
+            customName: {
+                type: String
+            }
+            
+        }]
     },
-    profilePicturePath: {
-        type: String,
-    },
-    profileBio: {
-        type: String
-    }
-    
-    
+    userPage: {
+        type: {
+            bio: {
+                type: String,
+            },
+            links: {
+                type: String,
+            },
+            profilePicturePath: {
+                type: String,
+            },
+        },
+    },  
 })
 
 module.exports = mongoose.model("User", userSchema)

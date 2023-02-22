@@ -12,11 +12,10 @@ const courseSchema = new mongoose.Schema ({
         unique: true
     },
     sections: {
-        type: {
+        type: [{
             sectionNum: {
                 type: String,
                 required: true,
-                unique: true
             },
             courseSize: {
                 type: Number,
@@ -26,7 +25,7 @@ const courseSchema = new mongoose.Schema ({
                 type: String,
                 required: true
             }
-        }
+        }]
     }
 
 
