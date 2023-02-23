@@ -7,6 +7,7 @@
     <title>Canvas</title>
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script src="/scripts/index.js" defer></script>
+
 </head>
     <body>
         <div class="body">
@@ -43,14 +44,18 @@
                 </div>
                 
                 <div class="courses">
-                    <div class="course-layout">
-                        <div class="course-layout-pic">
-                            <input type="image" class="course-menu" src="svg/navbar/3-vertical-dots-icon.svg">
-                        </div>
-                        <div class="course-layout-content">
-                            Software Engineering
-                        </div>
-                    </div>
+                    <% if(session.user) { 
+                        session.courses.forEach(course => { %>
+                            <div class="course-layout"> 
+                                <div class="course-layout-pic">
+                                    <input type="image" class="course-menu" src="svg/navbar/3-vertical-dots-icon.svg">
+                                </div>
+                                <div class="course-layout-content">
+                                    <%= `${course.courseName}` %>
+                                </div>
+                            </div>
+                        <% }) %>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ router.post('/save', util.isAuthenticated, avatarUpload.single('avatar'), async 
         user.userPage = {
             bio: req.body.bio,
             links: req.body.links,
-            profilePicturePath: `/uploads/${req.file?.filename}`
+            profilePicturePath: ((req.file) ? `/uploads/${req.file?.filename}` : user.userPage.profilePicturePath)
         }
         await User.updateOne({username: user.username}, {$set:{ userPage: user.userPage}})
         res.redirect('/user')

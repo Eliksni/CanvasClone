@@ -20,20 +20,10 @@ const userSchema = new mongoose.Schema ({
         type: String,
         required: true
     },
-    courses: {
-        type: [{
-            course: {
-                type: [mongoose.SchemaTypes.ObjectId]
-            },
-            color: {
-                type: String
-            },
-            customName: {
-                type: String
-            }
-            
-        }]
-    },
+    courses: [{
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Course'
+    }],
     userPage: {
         type: {
             bio: {
